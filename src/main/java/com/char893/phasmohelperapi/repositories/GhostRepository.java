@@ -28,4 +28,6 @@ public interface GhostRepository extends ListCrudRepository<Ghost, String>{
     
     public Optional<Ghost> findByNameIgnoreCase(String name);
     
+    public void deleteByNameIgnoreCase(String name);
+    
 }

@@ -12,6 +12,8 @@ import com.char893.phasmohelperapi.services.GhostService;
 import jakarta.validation.Valid;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -66,5 +68,11 @@ public class GhostController {
         Ghost ghost = ghostService.getByNameOrThrow(ghostName);
         ghost.addUniqueTrait(trait.getName(), trait.getExplanation());
         return ghostService.save(ghost);
+    }
+    
+    @DeleteMapping("/{name}")
+    public ResponseEntity deleteGhost(@PathVariable String name){
+        ghostService.delete(name);
+        return ResponseEntity.noContent().build();
     }
 }

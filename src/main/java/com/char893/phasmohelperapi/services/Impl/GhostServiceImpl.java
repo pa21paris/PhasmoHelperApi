@@ -54,5 +54,10 @@ public class GhostServiceImpl implements GhostService{
                         new NotFoundException("Ghost with name "+ name +" was not found")
                 );
     }
+
+    @Override
+    public void delete(String name) {
+        ghostRepository.deleteByNameIgnoreCase(name);
+    }
     
 }

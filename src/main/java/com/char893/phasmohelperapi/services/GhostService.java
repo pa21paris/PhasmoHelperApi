@@ -25,4 +25,6 @@ public interface GhostService {
     
     public Ghost save(Ghost ghost);
     
+    public void delete(String name);
+    
 }
