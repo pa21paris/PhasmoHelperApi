@@ -4,7 +4,7 @@
  */
 package com.char893.phasmohelperapi.models;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
@@ -25,7 +25,7 @@ public class Evidence {
     private String howToUse;
     
     @ManyToMany(cascade = CascadeType.REMOVE)
-    @JsonIgnore
+    @JsonIgnoreProperties("evidences")
     private Set<Ghost> ghosts = new HashSet<>();
 
     public Evidence(String name, String howToUse) {
