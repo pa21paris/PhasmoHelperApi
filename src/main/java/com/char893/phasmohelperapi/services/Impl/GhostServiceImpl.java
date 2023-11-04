@@ -4,6 +4,7 @@
  */
 package com.char893.phasmohelperapi.services.Impl;
 
+import com.char893.phasmohelperapi.Exceptions.NotFoundException;
 import com.char893.phasmohelperapi.models.Ghost;
 import com.char893.phasmohelperapi.repositories.GhostRepository;
 import com.char893.phasmohelperapi.services.GhostService;
@@ -38,7 +39,20 @@ public class GhostServiceImpl implements GhostService{
 
     @Override
     public Optional<Ghost> getByName(String name) {
-        return ghostRepository.findById(name);
+        return ghostRepository.findByNameIgnoreCase(name);
+    }
+
+    @Override
+    public Ghost save(Ghost ghost) {
+        return ghostRepository.save(ghost);
+    }
+    
+    @Override
+    public Ghost getByNameOrThrow(String name) throws NotFoundException{
+        return this.getByName(name)
+                .orElseThrow(() -> 
+                        new NotFoundException("Ghost with name "+ name +" was not found")
+                );
     }
     
 }

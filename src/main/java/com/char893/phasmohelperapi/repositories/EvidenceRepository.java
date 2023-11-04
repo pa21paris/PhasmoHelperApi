@@ -5,6 +5,7 @@
 package com.char893.phasmohelperapi.repositories;
 
 import com.char893.phasmohelperapi.models.Evidence;
+import java.util.Optional;
 import org.springframework.data.repository.ListCrudRepository;
 import org.springframework.stereotype.Repository;
 
@@ -14,5 +15,7 @@ import org.springframework.stereotype.Repository;
  */
 @Repository
 public interface EvidenceRepository extends ListCrudRepository<Evidence, String>{
+    
+    public Optional<Evidence> findByNameIgnoreCase(String name);
     
 }

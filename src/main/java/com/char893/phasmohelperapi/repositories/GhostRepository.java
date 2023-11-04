@@ -6,6 +6,7 @@ package com.char893.phasmohelperapi.repositories;
 
 import com.char893.phasmohelperapi.models.Ghost;
 import java.util.List;
+import java.util.Optional;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.ListCrudRepository;
 import org.springframework.stereotype.Repository;
@@ -24,5 +25,7 @@ public interface GhostRepository extends ListCrudRepository<Ghost, String>{
                    having LISTAGG(evidences_name) REGEXP ?1""",
             nativeQuery = true)
     public List<Ghost> getGhostsByEvidenceRegex(String regex);
+    
+    public Optional<Ghost> findByNameIgnoreCase(String name);
     
 }
