@@ -13,6 +13,7 @@ import java.util.List;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 /**
  *
@@ -54,8 +55,8 @@ public class GhostServiceImpl implements GhostService{
                         new NotFoundException("Ghost with name "+ name +" was not found")
                 );
     }
-
-    @Override
+    
+    @Override @Transactional
     public void delete(String name) {
         ghostRepository.deleteByNameIgnoreCase(name);
     }
