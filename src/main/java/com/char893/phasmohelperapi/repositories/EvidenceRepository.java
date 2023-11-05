@@ -17,5 +17,6 @@ import org.springframework.stereotype.Repository;
 public interface EvidenceRepository extends ListCrudRepository<Evidence, String>{
     
     public Optional<Evidence> findByNameIgnoreCase(String name);
+    public void deleteByNameIgnoreCase(String name);
     
 }

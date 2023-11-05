@@ -12,6 +12,7 @@ import java.util.List;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 /**
  *
@@ -39,6 +40,16 @@ public class EvidenceServiceImpl implements EvidenceService{
                     .orElseThrow(() ->
                         new NotFoundException("Evidence with name "+ name +" was not found")
                     );
+    }
+
+    @Override
+    public Evidence save(Evidence evidence) {
+        return evidenceRepository.save(evidence);
+    }
+
+    @Override @Transactional
+    public void delete(String name) {
+        evidenceRepository.deleteByNameIgnoreCase(name);
     }
     
 }

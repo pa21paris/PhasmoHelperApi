@@ -18,5 +18,8 @@ public interface EvidenceService {
     
     public List<Evidence> getAll();
     public Optional<Evidence> getByName(String name);
-    public Evidence getByNameOrThrow(String name) throws NotFoundException;    
+    public Evidence getByNameOrThrow(String name) throws NotFoundException;
+    public Evidence save(Evidence evidence);
+    public void delete(String name);
+            
 }

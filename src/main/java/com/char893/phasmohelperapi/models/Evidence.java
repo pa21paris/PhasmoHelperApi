@@ -4,11 +4,15 @@
  */
 package com.char893.phasmohelperapi.models;
 
+import com.char893.phasmohelperapi.Utils.ValidationGroups;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToMany;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Size;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -19,12 +23,14 @@ import java.util.Set;
 @Entity
 public class Evidence {
     
-    @Id
+    @Id @NotBlank(groups = ValidationGroups.onCreate.class)
     private String name;
     
+    @Size(max = 255, message = "max lenght is 255 characters")
     private String howToUse;
     
     @ManyToMany(cascade = CascadeType.REMOVE)
+    @JsonProperty(access = JsonProperty.Access.READ_ONLY)
     @JsonIgnoreProperties("evidences")
     private Set<Ghost> ghosts = new HashSet<>();
 
